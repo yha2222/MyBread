@@ -51,7 +51,7 @@ function Join() {
         placeholder="비밀번호를 입력해주세요"
         onChange={데이터변경}
       />
-      <button type="button" onClick={가입하기}>
+      <button className="btn" type="button" onClick={가입하기}>
         회원가입
       </button>
     </div>

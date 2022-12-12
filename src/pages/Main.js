@@ -27,8 +27,7 @@ function Main() {
 
   return (
     <div>
-      안녕하세요 {loginUser.nickname}님!
-      <div>
+      <div className="table">
         <h2>빵 후기 미리보기</h2>
         <table className="ui-table">
           <thead>

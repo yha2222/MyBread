@@ -7,6 +7,86 @@ const db = mysql.createPoolCluster();
 const app = express();
 const port = 4000;
 
+const breads = [
+  {
+    name: "튀김소보로",
+    content:
+      "https://www.sungsimdangmall.co.kr/data/sungsimdang/goods/sungsimdang/small/IMG01.png",
+    urbread: "유명제일",
+  },
+  {
+    name: "판타롱부추빵",
+    content:
+      "https://www.sungsimdangmall.co.kr/data/sungsimdang/goods/sungsimdang/small/IMG04.png",
+    urbread: "유명안느끼",
+  },
+  {
+    name: "명란바게트",
+    content:
+      "https://www.sungsimdangmall.co.kr/data/sungsimdang/goods/sungsimdang/small/IMG24.png",
+    urbread: "유명짭짤",
+  },
+  {
+    name: "맷돌로갈은통밀빵",
+    content:
+      "https://www.sungsimdangmall.co.kr/data/sungsimdang/goods/sungsimdang/small/IMG93.jpg",
+    urbread: "건강건강",
+  },
+  {
+    name: "월넛브래드",
+    content:
+      "https://www.sungsimdangmall.co.kr/data/sungsimdang/goods/sungsimdang/small/IMG23.png",
+    urbread: "건강달달",
+  },
+  {
+    name: "토요빵",
+    content:
+      "https://www.sungsimdangmall.co.kr/data/sungsimdang/goods/sungsimdang/small/IMG20.png",
+    urbread: "달쫀득",
+  },
+  {
+    name: "성심순크림빵",
+    content:
+      "https://www.sungsimdangmall.co.kr/data/sungsimdang/goods/sungsimdang/small/IMG34.jpg",
+    urbread: "달크림",
+  },
+  {
+    name: "카카오순정",
+    content:
+      "https://www.sungsimdangmall.co.kr/data/sungsimdang/goods/sungsimdang/small/IMG19.png",
+    urbread: "달디단",
+  },
+  {
+    name: "초코튀소",
+    content:
+      "https://www.sungsimdangmall.co.kr/data/sungsimdang/goods/sungsimdang/small/2020267652648880.png",
+    urbread: "달달유명",
+  },
+  {
+    name: "김치쌀밥주먹밥",
+    content:
+      "https://www.sungsimdangmall.co.kr/data/sungsimdang/goods/sungsimdang/small/IMG61.jpg",
+    urbread: "칼칼밥",
+  },
+  {
+    name: "새우를낙지",
+    content:
+      "https://www.sungsimdangmall.co.kr/data/sungsimdang/goods/sungsimdang/small/IMG64.jpg",
+    urbread: "칼칼고로케",
+  },
+  {
+    name: "보문산메아리",
+    content:
+      "https://www.sungsimdangmall.co.kr/data/sungsimdang/goods/sungsimdang/middle/IMG71.jpg",
+    urbread: "페스양많",
+  },
+  {
+    name: "작은메아리",
+    content: "",
+    urbread: "페스양적",
+  },
+];
+
 app.use(express.json());
 app.use(
   session({
@@ -53,12 +133,36 @@ function 디비실행(query) {
   });
 }
 
-app.get("/myBread", async (req, res) => {
-  const query = `SELECT * FROM myBread, user WHERE myBread.id = user.id`;
+app.get("/urBread", (req, res) => {
+  let result = "";
+  const bread = req.query;
+
+  for (let key in breads) {
+    const value = breads[key];
+
+    const [왼쪽bread, 오른쪽bread] = Object.keys(value);
+    const [왼쪽값, 오른쪽값] = Object.values(value);
+
+    if (왼쪽값 >= 오른쪽값) {
+      result += 왼쪽bread;
+    } else {
+      result += 오른쪽bread;
+    }
+  }
+
+  const [빵결과] = breads.filter((item) => {
+    return item.bread === result;
+  });
+
+  res.send(빵결과);
+});
+
+app.get("/myBreadList", async (req, res) => {
+  const query = `SELECT * FROM mybreadlist, user WHERE myBread.id = user.id`;
 
   const mybread = await 디비실행(query);
 
-  res.send(mybread);
+  res.send(mybread[0]);
 });
 
 app.get("/article_row", async (req, res) => {
