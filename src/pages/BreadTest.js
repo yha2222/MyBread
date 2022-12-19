@@ -6,7 +6,7 @@ import { Routes, Route, useNavigate, useLocation } from "react-router-dom";
 const StoreContext = React.createContext();
 
 const ProgressBar = (props) => {
-  const width = (480 / 2) * props.step;
+  const width = (480 / 1) * props.step;
 
   return (
     <div className="progress-bar">
@@ -58,14 +58,14 @@ function TestMain() {
   return (
     <div className="main-app">
       <img
-        src="https://kakaofriendsmbti.netlify.app/static/media/00.88f71908.png"
+        src="https://cdn.imweb.me/thumbnail/20220722/f3df23d953ade.png"
         alt="메인이미지"
       />
       <button
         className="btn"
         type="button"
         onClick={() => {
-          navigation("/teston1");
+          navigation("/breadtest/teston1");
         }}
       >
         시작하기
@@ -77,7 +77,7 @@ function TestMain() {
 function TestOn1() {
   return (
     <div className="main-app">
-      <ProgressBar step={1} />
+      <ProgressBar step={0.8} />
       <Question image="https://www.sungsimdangmall.co.kr/data/sungsimdang…ods/sungsimdang/small/202233238829723523374_1.jpg" />
       <Answer text="유명한 빵" value="유명" />
       <Answer text="건강한 빵" value="건강" />
@@ -177,6 +177,20 @@ function Result() {
     return <div>결과 없음</div>;
   }
 
+  const 빵저장 = async () => {
+    await axios({
+      url: "http://localhost:4000/keepBread",
+      method: "POST",
+      data: result,
+    }).then((response) => {
+      console.log(response);
+
+      if (response.data.message) {
+        alert(response.data.message);
+      }
+    });
+  };
+
   return (
     <div className="result-img-wrap">
       <div className="result-box">
@@ -187,17 +201,12 @@ function Result() {
         <button
           className="btn"
           onClick={() => {
-            navigation("/testmain");
+            navigation("/breadtest/testmain");
           }}
         >
           다시하기
         </button>
-        <button
-          className="btn"
-          onClick={() => {
-            //내 페이지 DB에 저장
-          }}
-        >
+        <button className="btn" onClick={빵저장}>
           담아놓기
         </button>
       </div>
@@ -265,12 +274,12 @@ function BreadTest() {
         localStorage.setItem("URBREAD", JSON.stringify(cloneBread));
         localStorage.setItem("PAGE", nextPage);
 
-        if (nextPage === 6) {
-          navigation("/result", {
+        if (nextPage === 5) {
+          navigation("/breadtest/result", {
             state: urbread,
           });
         } else {
-          navigation(`/teston${nextPage}`);
+          navigation(`/breadtest/teston${nextPage}`);
         }
         break;
 
@@ -289,7 +298,7 @@ function BreadTest() {
 
           setUrBread(기억되어있는URBREAD배열);
           setPage(Number(기억되어있는PAGE));
-          navigation(`/teston${기억되어있는PAGE}`);
+          navigation(`/breadtest/teston${기억되어있는PAGE}`);
         }
 
         break;
@@ -297,8 +306,6 @@ function BreadTest() {
       default:
         break;
     }
-
-    console.log(dispatch);
   }, [dispatch]);
 
   return (

@@ -6,6 +6,7 @@ import "./App.css";
 import { Login, 카카오데이터받는곳 } from "./pages/Login";
 import Join from "./pages/Join";
 import Main from "./pages/Main";
+import Map from "./pages/Map";
 import BreadTest from "./pages/BreadTest";
 import Write from "./pages/Write";
 import Article from "./pages/Article";
@@ -42,6 +43,7 @@ function App() {
     >
       <Routes>
         <Route exact path="/" element={<Main />} />
+        <Route exact path="/map" element={<Map />} />
         <Route exact path="/join" element={<Join />} />
         <Route exact path="/login" element={<Login />} />
         <Route

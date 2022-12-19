@@ -30,7 +30,7 @@ const breads = [
     name: "맷돌로갈은통밀빵",
     content:
       "https://www.sungsimdangmall.co.kr/data/sungsimdang/goods/sungsimdang/small/IMG93.jpg",
-    urbread: "건강건강",
+    urbread: "건강건강건강",
   },
   {
     name: "월넛브래드",
@@ -82,7 +82,8 @@ const breads = [
   },
   {
     name: "작은메아리",
-    content: "",
+    content:
+      "https://www.sungsimdangmall.co.kr/data/sungsimdang/goods/sungsimdang/small/IMG72.jpg",
     urbread: "페스양적",
   },
 ];
@@ -137,8 +138,8 @@ app.get("/urBread", (req, res) => {
   let result = "";
   const bread = req.query;
 
-  for (let key in breads) {
-    const value = breads[key];
+  for (let key in bread) {
+    const value = bread[key];
 
     const [왼쪽bread, 오른쪽bread] = Object.keys(value);
     const [왼쪽값, 오른쪽값] = Object.values(value);
@@ -155,6 +156,7 @@ app.get("/urBread", (req, res) => {
   });
 
   res.send(빵결과);
+  console.log(빵결과);
 });
 
 app.get("/myBreadList", async (req, res) => {
@@ -317,6 +319,22 @@ app.post("/reply", async (req, res) => {
   }
 
   const query = `INSERT INTO reply(body, seq, user_seq) VALUE('${replyText}', '${seq}', '${loginUser.seq}')`;
+
+  await 디비실행(query);
+
+  res.send(result);
+});
+
+app.post("/keepBread", async (req, res) => {
+  const { loginUser } = req.session;
+  const { bread } = req.body;
+
+  const result = {
+    code: "success",
+    message: "저장되었습니다",
+  };
+
+  const query = `INSERT INTO mybreadlist(user_seq, bread) VALUES('${loginUser.seq}','${bread}')`;
 
   await 디비실행(query);
 
