@@ -96,7 +96,8 @@ button {
 }
 
 .btn {
-  background-color: #fb97009f;
+  position: relative;
+  background-color: #ffca0b;
   color: #000;
   font-weight: bold;
   font-size: 15px;
@@ -104,6 +105,11 @@ button {
   margin-top: 20px;
   border-radius: 5px;
   box-shadow: grey 2px 2px 4px;
+}
+
+.btn-style {
+  display: inline-block;
+  padding: 10px;
 }
 
 .progress-bar {
@@ -120,15 +126,16 @@ button {
   width: 50px;
 }
 
-.image-box {
-  margin-top: 60px;
-  margin-bottom: 60px;
-}
-
 .result-img-wrap {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   height: 100vh;
+}
+
+.result-img {
+  width: 100vh;
+  height: 100vh;
+  padding: 50px 50px;
 }

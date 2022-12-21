@@ -27,33 +27,33 @@ function Main() {
 
   return (
     <div>
-      <div className="table">
+      <div className="percent">
         <h2>빵 후기 미리보기</h2>
-        <table className="ui-table">
-          <thead>
-            <tr>
-              <th>제목</th>
-              <th>내용</th>
-              <th>작성자</th>
-            </tr>
-          </thead>
-          <tbody>
-            {article.length > 0 &&
-              article.map((item, index) => {
-                return (
-                  <tr key={index}>
-                    <td>{item.title}</td>
-                    <td>{item.body}</td>
-                    <td>{item.user_seq}</td>
-                  </tr>
-                );
-              })}
-          </tbody>
-          <button className="ui-brown-button" onClick={글등록페이지이동}>
-            글 등록
-          </button>
-        </table>
       </div>
+      <table className="ui-table">
+        <thead>
+          <tr>
+            <th>제목</th>
+            <th>내용</th>
+            <th>작성자</th>
+          </tr>
+        </thead>
+        <tbody>
+          {article.length > 0 &&
+            article.map((item, index) => {
+              return (
+                <tr key={index}>
+                  <td>{item.title}</td>
+                  <td>{item.body}</td>
+                  <td>{item.user_seq}</td>
+                </tr>
+              );
+            })}
+        </tbody>
+        <button className="ui-brown-button" onClick={글등록페이지이동}>
+          글 등록
+        </button>
+      </table>
     </div>
   );
 }

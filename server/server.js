@@ -141,14 +141,10 @@ app.get("/urBread", (req, res) => {
   for (let key in bread) {
     const value = bread[key];
 
-    const [왼쪽bread, 오른쪽bread] = Object.keys(value);
-    const [왼쪽값, 오른쪽값] = Object.values(value);
+    //배열 중에 숫자 올라간 거 result에 저장 => 문장 완성
+    const most = Object.values(value);
 
-    if (왼쪽값 >= 오른쪽값) {
-      result += 왼쪽bread;
-    } else {
-      result += 오른쪽bread;
-    }
+    if (most) console.log(most);
   }
 
   const [빵결과] = breads.filter((item) => {

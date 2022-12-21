@@ -17,7 +17,7 @@ const ProgressBar = (props) => {
 
 const Question = (props) => {
   return (
-    <div className="image-box">
+    <div className="result-img">
       <imag src={props.image} alt="온보딩이미지" />
     </div>
   );
@@ -29,19 +29,21 @@ const Answer = (props) => {
   const { setDispatchType } = React.useContext(StoreContext);
 
   return (
-    <button
-      className="btn"
-      onClick={() => {
-        setDispatchType({
-          code: "답변",
-          params: {
-            value: props.value,
-          },
-        });
-      }}
-    >
-      {props.text}
-    </button>
+    <div className="btn-style">
+      <button
+        className="btn"
+        onClick={() => {
+          setDispatchType({
+            code: "답변",
+            params: {
+              value: props.value,
+            },
+          });
+        }}
+      >
+        {props.text}
+      </button>
+    </div>
   );
 };
 
@@ -56,20 +58,24 @@ function TestMain() {
   }, []);
 
   return (
-    <div className="main-app">
-      <img
-        src="https://cdn.imweb.me/thumbnail/20220722/f3df23d953ade.png"
-        alt="메인이미지"
-      />
-      <button
-        className="btn"
-        type="button"
-        onClick={() => {
-          navigation("/breadtest/teston1");
-        }}
-      >
-        시작하기
-      </button>
+    <div>
+      <div className="result-img">
+        <img
+          src="https://cdn.imweb.me/thumbnail/20220722/f3df23d953ade.png"
+          alt="메인이미지"
+        />
+      </div>
+      <div className="btn-style">
+        <button
+          className="btn"
+          type="button"
+          onClick={() => {
+            navigation("/breadtest/teston1");
+          }}
+        >
+          시작하기
+        </button>
+      </div>
     </div>
   );
 }
@@ -188,6 +194,10 @@ function Result() {
       if (response.data.message) {
         alert(response.data.message);
       }
+
+      if (response.data.code === "success") {
+        navigation("/Login");
+      }
     });
   };
 
@@ -274,7 +284,7 @@ function BreadTest() {
         localStorage.setItem("URBREAD", JSON.stringify(cloneBread));
         localStorage.setItem("PAGE", nextPage);
 
-        if (nextPage === 5) {
+        if (nextPage === 6) {
           navigation("/breadtest/result", {
             state: urbread,
           });
@@ -287,7 +297,7 @@ function BreadTest() {
         const 기억되어있는URBREAD = localStorage.getItem("URBREAD");
         const 기억되어있는PAGE = localStorage.getItem("PAGE");
 
-        if (기억되어있는PAGE === "5") {
+        if (기억되어있는PAGE === "6") {
           localStorage.removeItem("URBREAD");
           localStorage.removeItem("PAGE");
           return;
