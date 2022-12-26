@@ -25,171 +25,194 @@ const Question = (props) => {
 
 function TestMain() {
   const navigation = useNavigate();
-  const { setDispatchType } = React.useContext(StoreContext);
-
-  React.useEffect(() => {
-    setDispatchType({
-      code: "임시저장",
-    });
-  }, []);
 
   return (
-    <div>
-      <div className="result-img">
+    <div className="container">
+      <div className="screen">
         <img
           src="https://cdn.imweb.me/thumbnail/20220722/f3df23d953ade.png"
           alt="메인이미지"
         />
-      </div>
-      <div className="btn-style">
-        <button
-          className="btn"
-          type="button"
-          onClick={() => {
-            navigation("/breadtest/teston1");
-          }}
-        >
-          시작하기
-        </button>
+        <div className="screen__content">
+          <form className="login">
+            <button
+              className="button login__submit"
+              type="button"
+              onClick={() => {
+                navigation("/breadtest/test");
+              }}
+            >
+              <span className="button__text">시작하기</span>
+              <i className="button__icon fas fa-chevron-right"></i>
+            </button>
+          </form>
+        </div>
       </div>
     </div>
   );
 }
 
-function TestOn1() {
+function TestOn() {
+  const navigation = useNavigate();
+
   const [bread, setBread] = React.useState([
     {
       name: "유명",
       active: false,
-      itemActive: false,
       item: [
         {
           clicked: false,
-          name: "제일 유명한 빵",
+          name: "제일 유명",
         },
         {
           clicked: false,
-          name: "안 느끼한 빵",
+          name: "안 느끼",
         },
         {
           clicked: false,
-          name: "짭짤한 빵",
+          name: "짭짤",
+        },
+      ],
+    },
+    {
+      name: "건강",
+      active: false,
+      item: [
+        {
+          clicked: false,
+          name: "건강건강",
+        },
+        {
+          clicked: false,
+          name: "달달",
+        },
+      ],
+    },
+    {
+      name: "달달",
+      active: false,
+      item: [
+        {
+          clicked: false,
+          name: "쫀득",
+        },
+        {
+          clicked: false,
+          name: "크림",
+        },
+        {
+          clicked: false,
+          name: "제일 달달",
+        },
+        {
+          clicked: false,
+          name: "유명",
+        },
+      ],
+    },
+    {
+      name: "칼칼",
+      active: false,
+      item: [
+        {
+          clicked: false,
+          name: "밥",
+        },
+        {
+          clicked: false,
+          name: "고로케",
+        },
+      ],
+    },
+    {
+      name: "페스츄리",
+      active: false,
+      item: [
+        {
+          clicked: false,
+          name: "양 많음",
+        },
+        {
+          clicked: false,
+          name: "양 적음",
         },
       ],
     },
   ]);
 
   return (
-    <div className="main-app">
-      {/* <ProgressBar step={0.8} />
-      <Question image="https://www.sungsimdangmall.co.kr/data/sungsimdang…ods/sungsimdang/small/202233238829723523374_1.jpg" /> */}
+    <div className="container">
+      <div className="screen">
+        {bread.map((item, index) => {
+          const activeClass = item.active === true ? "active-menu" : "";
+          const result = "";
 
-      {bread.map((item, index) => {
-        console.log(item);
+          return (
+            <div className="social-icons" key={`bread-${index}`}>
+              <button
+                className={`social-login__icon ${activeClass}`}
+                onClick={() => {
+                  const newBread = [...bread].map((item, _index) => {
+                    item.active = _index === index ? true : false;
+                    return item;
+                  });
+                  setBread(newBread);
+                }}
+              >
+                {item.name}
+              </button>
 
-        return (
-          <div className="btn-style" key={`bread-${index}`}>
-            <button
-              className="btn"
-              onClick={() => {
-                console.log(!item.active);
-                console.log(!item.itemActive);
-              }}
-            >
-              {item.name}
-            </button>
+              {item.active === true &&
+                item.item.map((자식, sIndex) => {
+                  const activeClass =
+                    자식.clicked === true ? "active-menu" : "";
 
-            {item.itemActive === true &&
-              item.item.map((자식, sIndex) => {
-                return (
-                  <div className="btn-style" key={`bread-자식-${sIndex}`}>
-                    <button
-                      className="btn"
-                      onClick={() => {
-                        setBread(!자식.clicked);
-                        console.log(자식.clicked);
-                      }}
-                    >
-                      {자식.name}
-                    </button>
-                  </div>
-                );
-              })}
-          </div>
-        );
-      })}
-      {/* 
-      <Answer text="유명한 빵" value="유명" />
-      <Answer text="건강한 빵" value="건강" />
-      <Answer text="달달한 빵" value="달" />
-      <Answer text="칼칼한 빵" value="칼" />
-      <Answer text="페스츄리 빵" value="페스" /> */}
+                  return (
+                    <div className="social-icons" key={`bread-자식-${sIndex}`}>
+                      <button
+                        className={`social-login__icon ${activeClass}`}
+                        onClick={() => {
+                          const cloneBread = [...bread];
+
+                          const findIndex = cloneBread.findIndex((item) => {
+                            return item.active === true;
+                          });
+
+                          cloneBread[findIndex].item = cloneBread[
+                            findIndex
+                          ].item.map((item, index) => {
+                            item.clicked = sIndex === index ? true : false;
+                            return item;
+                          });
+
+                          setBread(cloneBread);
+                        }}
+                      >
+                        {자식.name}
+                      </button>
+                    </div>
+                  );
+                })}
+            </div>
+          );
+        })}
+
+        <button
+          className="login__submit"
+          type="button"
+          style={{ marginTop: 50 }}
+          onClick={() => {
+            console.log(bread);
+            navigation("/breadtest/result");
+          }}
+        >
+          <span className="button__text">추천보기</span>
+          <i className="button__icon fas fa-chevron-right"></i>
+        </button>
+      </div>
     </div>
   );
 }
-
-// 유명 선택지
-// function TestOn2() {
-//   return (
-//     <div className="main-app">
-//       <ProgressBar step={2} />
-//       <Question image="https://www.sungsimdangmall.co.kr/data/sungsimdang…ods/sungsimdang/small/202233238829723523374_1.jpg" />
-//       <Answer text="제일 유명한 빵" value="제일" />
-//       <Answer text="안 느끼한 빵" value="안느끼" />
-//       <Answer text="짭짤한 빵" value="짭짤" />
-//     </div>
-//   );
-// }
-
-// 건강 선택지
-// function TestOn3() {
-//   return (
-//     <div className="main-app">
-//       <ProgressBar step={2} />
-//       <Question image="https://www.sungsimdangmall.co.kr/data/sungsimdang…ods/sungsimdang/small/202233238829723523374_1.jpg" />
-//       <Answer text="최강 건강 빵" value="건강건강" />
-//       <Answer text="그 중에 달달한 빵" value="달달" />
-//     </div>
-//   );
-// }
-
-// 달달 선택지
-// function TestOn4() {
-//   return (
-//     <div className="main-app">
-//       <ProgressBar step={2} />
-//       <Question image="https://www.sungsimdangmall.co.kr/data/sungsimdang…ods/sungsimdang/small/202233238829723523374_1.jpg" />
-//       <Answer text="쫀득한 빵" value="쫀득" />
-//       <Answer text="크림 든 빵" value="크림" />
-//       <Answer text="제일 단 빵" value="디단" />
-//       <Answer text="그 중에 유명한 빵" value="달유명" />
-//     </div>
-//   );
-// }
-
-// 칼칼 선택지
-// function TestOn5() {
-//   return (
-//     <div className="main-app">
-//       <ProgressBar step={2} />
-//       <Question image="https://www.sungsimdangmall.co.kr/data/sungsimdang…ods/sungsimdang/small/202233238829723523374_1.jpg" />
-//       <Answer text="빵 말고 밥" value="칼밥" />
-//       <Answer text="빵 말고 고로케" value="칼고로케" />
-//     </div>
-//   );
-// }
-
-// 페스츄리 선택지
-// function TestOn6() {
-//   return (
-//     <div className="main-app">
-//       <ProgressBar step={2} />
-//       <Question image="https://www.sungsimdangmall.co.kr/data/sungsimdang…ods/sungsimdang/small/202233238829723523374_1.jpg" />
-//       <Answer text="양 많고 부들 빵" value="양많" />
-//       <Answer text="양 적고 빠삭한 빵" value="양적" />
-//     </div>
-//   );
-// }
 
 function Result() {
   const navigation = useNavigate();
@@ -268,70 +291,12 @@ function BreadTest() {
 
   let [page, setPage] = React.useState(1);
 
-  // React.useEffect(() => {
-  //   switch (dispatch.code) {
-  //     case "답변":
-  //       const cloneBread = [...bread];
-  //       const findIndex = cloneBread.findIndex((item) => {
-  //         return item[dispatch.params.value] !== undefined;
-  //       });
-
-  //       cloneBread[findIndex][dispatch.params.value] += 1;
-  //       setBread(cloneBread);
-
-  //       const nextPage = (page += 1);
-  //       setPage(nextPage);
-
-  //       console.log(nextPage);
-
-  //       // localStorage.setItem("URBREAD", JSON.stringify(cloneBread));
-  //       // localStorage.setItem("PAGE", nextPage);
-
-  //       if (nextPage === 6) {
-  //         navigation("/breadtest/result", {
-  //           state: bread,
-  //         });
-  //       } else {
-  //         navigation(`/breadtest/teston${nextPage}`);
-  //       }
-  //       break;
-
-  //     case "임시저장":
-  //       const 기억되어있는URBREAD = localStorage.getItem("URBREAD");
-  //       const 기억되어있는PAGE = localStorage.getItem("PAGE");
-
-  //       if (기억되어있는PAGE === "6") {
-  //         localStorage.removeItem("URBREAD");
-  //         localStorage.removeItem("PAGE");
-  //         return;
-  //       }
-
-  //       if (기억되어있는URBREAD && 기억되어있는PAGE) {
-  //         const 기억되어있는URBREAD배열 = JSON.parse(기억되어있는URBREAD);
-
-  //         setUrBread(기억되어있는URBREAD배열);
-  //         setPage(Number(기억되어있는PAGE));
-  //         navigation(`/breadtest/teston${기억되어있는PAGE}`);
-  //       }
-
-  //       break;
-
-  //     default:
-  //       break;
-  //   }
-  // }, [dispatch]);
-
   return (
     <StoreContext.Provider value={{ setDispatchType }}>
       <Routes>
-        <Route exact path="/testmain" element={<TestMain />} />
-        <Route exact path="/teston1" element={<TestOn1 />} />
-        {/* <Route exact path="/teston2" element={<TestOn2 />} />
-        <Route exact path="/teston3" element={<TestOn3 />} />
-        <Route exact path="/teston4" element={<TestOn4 />} />
-        <Route exact path="/teston5" element={<TestOn5 />} />
-        <Route exact path="/teston6" element={<TestOn6 />} />
-        <Route exact path="/result" element={<Result />} /> */}
+        <Route exact path="/main" element={<TestMain />} />
+        <Route exact path="/test" element={<TestOn />} />
+        <Route exact path="/result" element={<Result />} />
       </Routes>
     </StoreContext.Provider>
   );

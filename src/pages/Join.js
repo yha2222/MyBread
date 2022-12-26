@@ -34,28 +34,53 @@ function Join() {
   };
 
   return (
-    <div className="ui-wrap">
-      <h2>회원가입</h2>
-      <div className="ui-box">
-        <input
-          name="id"
-          placeholder="아이디를 입력해주세요"
-          onChange={데이터변경}
-        />
-        <input
-          name="nickname"
-          placeholder="닉네임을 입력해주세요"
-          onChange={데이터변경}
-        />
-        <input
-          type="password"
-          name="pw"
-          placeholder="비밀번호를 입력해주세요"
-          onChange={데이터변경}
-        />
-        <button className="btn" type="button" onClick={가입하기}>
-          회원가입
-        </button>
+    <div class="container">
+      <div class="screen">
+        <div class="screen__content">
+          <form class="login">
+            <div class="login__field">
+              <i class="login__icon fas fa-user"></i>
+              <input
+                type="text"
+                class="login__input"
+                placeholder="User nickname"
+                onChange={데이터변경}
+              />
+            </div>
+            <div class="login__field">
+              <i class="login__icon fas fa-user"></i>
+              <input
+                type="text"
+                class="login__input"
+                placeholder="User id"
+                onChange={데이터변경}
+              />
+            </div>
+            <div class="login__field">
+              <i class="login__icon fas fa-lock"></i>
+              <input
+                type="password"
+                class="login__input"
+                placeholder="Password"
+                onChange={데이터변경}
+              />
+            </div>
+            <button
+              class="button login__submit"
+              type="button"
+              onClick={가입하기}
+            >
+              회원가입
+            </button>
+          </form>
+          <div class="social-login"></div>
+        </div>
+        <div class="screen__background">
+          <span class="screen__background__shape screen__background__shape4"></span>
+          <span class="screen__background__shape screen__background__shape3"></span>
+          <span class="screen__background__shape screen__background__shape2"></span>
+          <span class="screen__background__shape screen__background__shape1"></span>
+        </div>
       </div>
     </div>
   );

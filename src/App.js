@@ -42,7 +42,7 @@ function App() {
       }}
     >
       <Routes>
-        <Route exact path="/main" element={<Main />} />
+        <Route exact path="/" element={<Main />} />
         <Route exact path="/map" element={<Map />} />
         <Route exact path="/join" element={<Join />} />
         <Route exact path="/login" element={<Login />} />
@@ -52,7 +52,7 @@ function App() {
           element={<카카오데이터받는곳 />}
         />
         <Route exact path="/write" element={<Write />} />
-        <Route exact path="/myPage" element={<MyPage />} />
+        <Route exact path="/mypage" element={<MyPage />} />
         <Route exact path="/breadtest/*" element={<BreadTest />} />
         <Route exact path="/article" element={<Article />} />
       </Routes>

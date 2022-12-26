@@ -12,13 +12,13 @@ const breads = [
     name: "튀김소보로",
     content:
       "https://www.sungsimdangmall.co.kr/data/sungsimdang/goods/sungsimdang/small/IMG01.png",
-    urbread: "유명제일",
+    urbread: "유명제일 유명",
   },
   {
     name: "판타롱부추빵",
     content:
       "https://www.sungsimdangmall.co.kr/data/sungsimdang/goods/sungsimdang/small/IMG04.png",
-    urbread: "유명안느끼",
+    urbread: "유명안 느끼",
   },
   {
     name: "명란바게트",
@@ -42,19 +42,19 @@ const breads = [
     name: "토요빵",
     content:
       "https://www.sungsimdangmall.co.kr/data/sungsimdang/goods/sungsimdang/small/IMG20.png",
-    urbread: "달쫀득",
+    urbread: "달달쫀득",
   },
   {
     name: "성심순크림빵",
     content:
       "https://www.sungsimdangmall.co.kr/data/sungsimdang/goods/sungsimdang/small/IMG34.jpg",
-    urbread: "달크림",
+    urbread: "달달크림",
   },
   {
     name: "카카오순정",
     content:
       "https://www.sungsimdangmall.co.kr/data/sungsimdang/goods/sungsimdang/small/IMG19.png",
-    urbread: "달디단",
+    urbread: "달달제일 달달",
   },
   {
     name: "초코튀소",
@@ -78,13 +78,13 @@ const breads = [
     name: "보문산메아리",
     content:
       "https://www.sungsimdangmall.co.kr/data/sungsimdang/goods/sungsimdang/middle/IMG71.jpg",
-    urbread: "페스양많",
+    urbread: "페스츄리양 많음",
   },
   {
     name: "작은메아리",
     content:
       "https://www.sungsimdangmall.co.kr/data/sungsimdang/goods/sungsimdang/small/IMG72.jpg",
-    urbread: "페스양적",
+    urbread: "페스츄리양 적음",
   },
 ];
 

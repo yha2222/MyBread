@@ -58,20 +58,6 @@
   transform: translateX(10px);
 }
 
-.progress-bar {
-  width: 100%;
-  background-color: #fff;
-  height: 30px;
-  border-radius: 12px;
-}
-
-.percent {
-  background-color: #ff7f34;
-  height: 30px;
-  border-radius: 12px;
-  width: 50px;
-}
-
 .result-img-wrap {
   display: flex;
   flex-direction: column;
@@ -197,7 +183,7 @@ body {
   padding-left: 24px;
   font-weight: 700;
   width: 75%;
-  transition: 0.2s;
+  transition: 0.5s;
 }
 
 .login__input:active,
@@ -256,11 +242,16 @@ body {
 
 .social-login__icon {
   padding: 20px 10px;
-  color: #fff;
+  color: rgb(251, 180, 58);
   text-decoration: none;
   text-shadow: 0px 0px 8px #ea9a36;
 }
 
 .social-login__icon:hover {
   transform: scale(1.5);
+}
+
+.active-menu {
+  font-size: 0.5rem;
+  background-color: #ea9a36 !important;
 }
