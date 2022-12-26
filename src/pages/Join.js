@@ -34,26 +34,29 @@ function Join() {
   };
 
   return (
-    <div>
-      <input
-        name="id"
-        placeholder="아이디를 입력해주세요"
-        onChange={데이터변경}
-      />
-      <input
-        name="nickname"
-        placeholder="닉네임을 입력해주세요"
-        onChange={데이터변경}
-      />
-      <input
-        type="password"
-        name="pw"
-        placeholder="비밀번호를 입력해주세요"
-        onChange={데이터변경}
-      />
-      <button className="btn" type="button" onClick={가입하기}>
-        회원가입
-      </button>
+    <div className="ui-wrap">
+      <h2>회원가입</h2>
+      <div className="ui-box">
+        <input
+          name="id"
+          placeholder="아이디를 입력해주세요"
+          onChange={데이터변경}
+        />
+        <input
+          name="nickname"
+          placeholder="닉네임을 입력해주세요"
+          onChange={데이터변경}
+        />
+        <input
+          type="password"
+          name="pw"
+          placeholder="비밀번호를 입력해주세요"
+          onChange={데이터변경}
+        />
+        <button className="btn" type="button" onClick={가입하기}>
+          회원가입
+        </button>
+      </div>
     </div>
   );
 }

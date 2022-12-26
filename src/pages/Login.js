@@ -41,29 +41,54 @@ function Login() {
   };
 
   return (
-    <div>
-      <input
-        name="id"
-        placeholder="아이디를 입력해주세요"
-        onChange={데이터변경}
-      />
-      <input
-        type="password"
-        name="pw"
-        placeholder="비밀번호를 입력해주세요"
-        onChange={데이터변경}
-      />
-      <button className="btn" type="button" onClick={로그인하기}>
-        로그인
-      </button>
-      <div></div>
-      <button
-        type="button"
-        style={{ backgroundColor: "#F7E600", fontSize: 30, cursor: "pointer" }}
-        onClick={카카오로그인}
-      >
-        카카오 계정으로 로그인
-      </button>
+    <div class="container">
+      <div class="screen">
+        <div class="screen__content">
+          <form class="login">
+            <div class="login__field">
+              <i class="login__icon fas fa-user"></i>
+              <input
+                type="text"
+                class="login__input"
+                placeholder="User name / Email"
+              />
+            </div>
+            <div class="login__field">
+              <i class="login__icon fas fa-lock"></i>
+              <input
+                type="password"
+                class="login__input"
+                placeholder="Password"
+              />
+            </div>
+            <button class="button login__submit">
+              <span class="button__text">Log In Now</span>
+              <i class="button__icon fas fa-chevron-right"></i>
+            </button>
+          </form>
+          <div class="social-login">
+            <div>
+              <button
+                className="btn"
+                type="button"
+                style={{
+                  border: "1px solid black",
+                  color: "#F7E600",
+                }}
+                onClick={카카오로그인}
+              >
+                카카오 계정으로 로그인
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="screen__background">
+          <span class="screen__background__shape screen__background__shape4"></span>
+          <span class="screen__background__shape screen__background__shape3"></span>
+          <span class="screen__background__shape screen__background__shape2"></span>
+          <span class="screen__background__shape screen__background__shape1"></span>
+        </div>
+      </div>
     </div>
   );
 }
